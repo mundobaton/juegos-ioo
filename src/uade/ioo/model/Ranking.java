@@ -47,7 +47,7 @@ public class Ranking {
 	}
 
 	public void actualizarRanking(Usuario user, Juego juego, Nivel nivel) {
-		ItemRanking ir = getItemRanking(user, juego);
+		ItemRanking ir = getItemRanking(user.getId(), juego.getNombre());
 		if (ir == null) {
 			ir = new ItemRanking(user, juego, nivel);
 			this.items.add(ir);
@@ -58,11 +58,11 @@ public class Ranking {
 		}
 	}
 
-	private ItemRanking getItemRanking(Usuario user, Juego juego) {
+	private ItemRanking getItemRanking(String userId, String juegoId) {
 		ItemRanking result = null;
 		for (Iterator<ItemRanking> it = this.items.iterator(); (it.hasNext() && result == null);) {
 			ItemRanking aux = it.next();
-			if (aux.getJuego().getNombre().equals(juego.getNombre()) && aux.getUser().getId().equals(user.getId())) {
+			if (aux.getJuego().getNombre().equals(juegoId) && aux.getUser().getId().equals(userId)) {
 				result = aux;
 			}
 		}
