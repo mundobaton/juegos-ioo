@@ -27,6 +27,25 @@ public class MenuPrincipalFrame extends BaseViewFrame {
 			juegoButton.addActionListener(new GameSelectActionListener(this));
 			add(juegoButton);
 		}
+		
+		JButton modificarUsuarioButton = new JButton();
+		modificarUsuarioButton.setText("Preferencias");
+		modificarUsuarioButton.setBounds(20, 450, 130, 20);
+		modificarUsuarioButton.addActionListener(new PreferenciasActionListener());
+		add(modificarUsuarioButton);
+
+		JButton salirButton = new JButton();
+		salirButton.setText("Salir");
+		salirButton.setBounds(350, 450, 130, 20);
+		salirButton.addActionListener(new SalirActionListener());
+		add(salirButton);
+	}
+
+	private void salir() {
+		this.controller.logout();
+		LoginFrame login = new LoginFrame(controller);
+		this.setVisible(false);
+		login.setVisible(true);
 	}
 
 	public class GameSelectActionListener implements ActionListener {
@@ -49,4 +68,26 @@ public class MenuPrincipalFrame extends BaseViewFrame {
 		}
 	}
 
+	public class SalirActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			salir();
+		}
+	}
+	
+	public class PreferenciasActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			showPreferencias();
+		}
+
+		
+	}
+	private void showPreferencias() {
+		PreferenciasFrame prefs = new PreferenciasFrame(controller);
+		this.setVisible(false);
+		prefs.setVisible(true);
+	}
 }

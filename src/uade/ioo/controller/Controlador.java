@@ -76,16 +76,9 @@ public class Controlador {
 		}
 	}
 
-	public void modificarUsuario(String userId, String nombre, String apellido) {
-		Usuario u = null;
-		for (Iterator<Usuario> it = this.usuarios.iterator(); u == null;) {
-			Usuario aux = it.next();
-			if (aux.getId().equals(userId)) {
-				u = aux;
-			}
-		}
-		u.setNombre(nombre);
-		u.setApellido(apellido);
+	public void modificarUsuario(String nombre, String apellido) {
+		this.usuarioActual.setNombre(nombre);
+		this.usuarioActual.setApellido(apellido);
 	}
 
 	/**
@@ -94,14 +87,9 @@ public class Controlador {
 	 * 
 	 * @param userId
 	 */
-	public void eliminarUsuario(String userId) {
-		this.ranking.eliminarRankingUsuario(userId);
-		for (Iterator<Usuario> it = this.usuarios.iterator(); it.hasNext();) {
-			Usuario u = it.next();
-			if (u.getId().equals(userId)) {
-				it.remove();
-			}
-		}
+	public void eliminarUsuario() {
+		this.ranking.eliminarRankingUsuario(this.usuarioActual.getId());
+		this.usuarios.remove(this.usuarioActual);
 	}
 
 	public void logout() {
@@ -151,5 +139,9 @@ public class Controlador {
 
 	public Juego getJuegoActual() {
 		return juegoActual;
+	}
+	
+	public Usuario getUsuarioActual() {
+		return this.usuarioActual;
 	}
 }

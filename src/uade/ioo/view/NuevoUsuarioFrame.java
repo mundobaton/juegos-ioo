@@ -21,6 +21,10 @@ public class NuevoUsuarioFrame extends BaseViewFrame {
 	private JTextField usuarioField;
 	private JTextField nombreField;
 	private JTextField apellidoField;
+	private JLabel usuarioVacio;
+	private JLabel nombreVacio;
+	private JLabel apellidoVacio;
+	private JLabel usuarioYaExiste;
 
 	public NuevoUsuarioFrame(Controlador controller) {
 		super(controller);
@@ -50,6 +54,18 @@ public class NuevoUsuarioFrame extends BaseViewFrame {
 		aceptarButton.setBounds(260, 80, 130, 30);
 		aceptarButton.addActionListener(new AceptarActionListener(this));
 
+		usuarioVacio = new JLabel("El nombre de usuario es requerido");
+		usuarioVacio.setBounds(20, 110, 300, 20);
+
+		nombreVacio = new JLabel("El nombre es requerido");
+		nombreVacio.setBounds(20, 130, 200, 20);
+
+		apellidoVacio = new JLabel("El apellido es requerido");
+		apellidoVacio.setBounds(20, 150, 200, 20);
+
+		usuarioYaExiste = new JLabel();
+		usuarioYaExiste.setBounds(20, 170, 200, 20);
+
 		add(usuarioLabel);
 		add(firstNameLabel);
 		add(lastNameLabel);
@@ -75,16 +91,36 @@ public class NuevoUsuarioFrame extends BaseViewFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (nuevoUsuarioFrame.usuarioField.getText() != null
-					&& !nuevoUsuarioFrame.usuarioField.getText().isEmpty()) {
+			boolean hasError = false;
+			nuevoUsuarioFrame.remove(usuarioYaExiste);
+			nuevoUsuarioFrame.remove(usuarioVacio);
+			nuevoUsuarioFrame.remove(nombreVacio);
+			nuevoUsuarioFrame.remove(apellidoVacio);
 
+			if (nuevoUsuarioFrame.usuarioField.getText() == null
+					|| nuevoUsuarioFrame.usuarioField.getText().isEmpty()) {
+				nuevoUsuarioFrame.add(usuarioVacio);
+				hasError = true;
+			}
+
+			if (nuevoUsuarioFrame.nombreField.getText() == null || nuevoUsuarioFrame.nombreField.getText().isEmpty()) {
+				hasError = true;
+				nuevoUsuarioFrame.add(nombreVacio);
+			}
+
+			if (nuevoUsuarioFrame.apellidoField.getText() == null
+					|| nuevoUsuarioFrame.apellidoField.getText().isEmpty()) {
+				hasError = true;
+				nuevoUsuarioFrame.add(apellidoVacio);
+			}
+
+			if (!hasError) {
 				try {
 					controller.crearUsuario(nuevoUsuarioFrame.usuarioField.getText(),
 							nuevoUsuarioFrame.nombreField.getText(), nuevoUsuarioFrame.apellidoField.getText());
 					volver();
 				} catch (ValidationException ve) {
-					JLabel usuarioYaExiste = new JLabel(ve.getMessage());
-					usuarioYaExiste.setBounds(20, 100, 200, 20);
+					usuarioYaExiste.setText(ve.getMessage());
 					nuevoUsuarioFrame.add(usuarioYaExiste);
 				}
 			}

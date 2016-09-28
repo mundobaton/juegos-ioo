@@ -152,9 +152,6 @@ public class RompecabezasFrame extends BaseViewFrame {
 
 	public class VolverActionListener implements ActionListener {
 
-		public VolverActionListener() {
-		}
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			volver();
