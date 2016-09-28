@@ -47,11 +47,11 @@ public class NuevoUsuarioFrame extends BaseViewFrame {
 		apellidoField.setBounds(270, 60, 200, 20);
 
 		JButton volverButton = new JButton(BACK);
-		volverButton.setBounds(160, 80, 100, 30);
+		volverButton.setBounds(160, 400, 100, 30);
 		volverButton.addActionListener(new VolverActionListener());
 
 		JButton aceptarButton = new JButton(ACEPTAR);
-		aceptarButton.setBounds(260, 80, 130, 30);
+		aceptarButton.setBounds(260, 400, 130, 30);
 		aceptarButton.addActionListener(new AceptarActionListener(this));
 
 		usuarioVacio = new JLabel("El nombre de usuario es requerido");

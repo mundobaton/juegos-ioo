@@ -53,15 +53,15 @@ public class PreferenciasFrame extends BaseViewFrame {
 		this.apellidoField.setText(usuarioActual.getApellido());
 
 		JButton volverButton = new JButton(BACK);
-		volverButton.setBounds(160, 80, 100, 30);
+		volverButton.setBounds(160, 370, 100, 30);
 		volverButton.addActionListener(new VolverActionListener());
 
 		JButton aceptarButton = new JButton(ACEPTAR);
-		aceptarButton.setBounds(260, 80, 130, 30);
+		aceptarButton.setBounds(260, 370, 130, 30);
 		aceptarButton.addActionListener(new AceptarActionListener(this));
 		
 		JButton eliminarButton = new JButton(ELIMINAR);
-		eliminarButton.setBounds(210, 110, 130, 30);
+		eliminarButton.setBounds(210, 400, 130, 30);
 		eliminarButton.addActionListener(new EliminarActionListener(this));
 
 		add(usuarioLabel);

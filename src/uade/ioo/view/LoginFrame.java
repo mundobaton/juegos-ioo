@@ -29,11 +29,11 @@ public class LoginFrame extends BaseViewFrame {
 		this.usuarioField.setBounds(220, 20, 200, 20);
 
 		JButton loginButton = new JButton(DEFAULT_LOGIN_BUTTON_MSG);
-		loginButton.setBounds(160, 60, 100, 30);
+		loginButton.setBounds(160, 400, 100, 30);
 		loginButton.addActionListener(new LoginButtonActionListener(this));
 
 		JButton newUserButton = new JButton(DEFAULT_NEW_USER_BUTTON_MSG);
-		newUserButton.setBounds(260, 60, 130, 30);
+		newUserButton.setBounds(260, 400, 130, 30);
 		newUserButton.addActionListener(new NewUserActionListener(this));
 
 		add(usuarioLabel);
