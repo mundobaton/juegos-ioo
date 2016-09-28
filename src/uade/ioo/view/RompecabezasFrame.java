@@ -112,6 +112,7 @@ public class RompecabezasFrame extends BaseViewFrame {
 			frame.destino.button.setEnabled(false);
 			try {
 				this.frame.controller.procesarAccion(origen.value, destino.value);
+				this.frame.destino.button.setIcon(this.frame.origen.button.getIcon());
 				this.frame.origen = null;
 				this.frame.destino = null;
 				if (this.frame.controller.nivelCompleto()) {
