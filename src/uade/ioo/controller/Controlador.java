@@ -40,6 +40,20 @@ public class Controlador {
 
 		Nivel n1 = new Nivel(1, piezas);
 		nivelesRompeCabezas.add(n1);
+
+		piezas = new ArrayList<Pieza>();
+		piezas.add(new Pieza("0_0", "/images/smb_0-0.jpg"));
+		piezas.add(new Pieza("0_1", "/images/smb_0-1.jpg"));
+		piezas.add(new Pieza("0_2", "/images/smb_0-2.jpg"));
+		piezas.add(new Pieza("1_0", "/images/smb_1-0.jpg"));
+		piezas.add(new Pieza("1_1", "/images/smb_1-1.jpg"));
+		piezas.add(new Pieza("1_2", "/images/smb_1-2.jpg"));
+		piezas.add(new Pieza("2_0", "/images/smb_2-0.jpg"));
+		piezas.add(new Pieza("2_1", "/images/smb_2-1.jpg"));
+		piezas.add(new Pieza("2_2", "/images/smb_2-2.jpg"));
+		Nivel n2 = new Nivel(2, piezas);
+		nivelesRompeCabezas.add(n2);
+
 		Juego r = new Rompecabezas("rompecabezas", nivelesRompeCabezas);
 		this.juegos.add(r);
 	}
@@ -96,12 +110,6 @@ public class Controlador {
 		this.usuarioActual = null;
 	}
 
-	public void actualizarRanking() {
-		//Cuando tengamos mas niveles, descomentar la linea
-		//this.ranking.actualizarRanking(this.usuarioActual, this.juegoActual, this.juegoActual.getNivelActual() + 1);
-		this.ranking.actualizarRanking(this.usuarioActual, this.juegoActual, this.juegoActual.getNivelActual());
-	}
-
 	public List<Juego> getJuegos() {
 		return juegos;
 	}
@@ -140,8 +148,13 @@ public class Controlador {
 	public Juego getJuegoActual() {
 		return juegoActual;
 	}
-	
+
 	public Usuario getUsuarioActual() {
 		return this.usuarioActual;
+	}
+
+	public void actualizarJuegoNivelCompleto() {
+		this.juegoActual.incrementarNivelActual();
+		this.ranking.actualizarRankingJuego(this.usuarioActual, this.juegoActual);
 	}
 }

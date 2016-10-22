@@ -39,22 +39,20 @@ public class Ranking {
 		ItemRanking result = null;
 		for (Iterator<ItemRanking> it = rank.iterator(); (it.hasNext() && result == null);) {
 			ItemRanking aux = it.next();
-			if (aux.getJuego().equals(juegoId)) {
+			if (aux.getJuego().getNombre().equals(juegoId)) {
 				result = aux;
 			}
 		}
 		return result;
 	}
 
-	public void actualizarRanking(Usuario user, Juego juego, Nivel nivel) {
+	public void actualizarRankingJuego(Usuario user, Juego juego) {
 		ItemRanking ir = getItemRanking(user.getId(), juego.getNombre());
 		if (ir == null) {
-			ir = new ItemRanking(user, juego, nivel);
+			ir = new ItemRanking(user, juego, juego.getNivelActual());
 			this.items.add(ir);
 		} else {
-			if (ir.getNivel().getNumero() < nivel.getNumero()) {
-				ir.setNivel(nivel);
-			}
+			ir.setNivel(juego.getNivelActual());
 		}
 	}
 

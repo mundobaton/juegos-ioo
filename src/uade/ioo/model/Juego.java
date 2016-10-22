@@ -8,7 +8,7 @@ import uade.ioo.exception.InvalidAccionException;
 public abstract class Juego {
 
 	private String nombre;
-	protected Nivel nivelActual;
+	private Nivel nivelActual;
 	private List<Nivel> niveles;
 
 	public Juego(String nombre, List<Nivel> niveles) {
@@ -45,8 +45,28 @@ public abstract class Juego {
 		return nivelActual;
 	}
 
+	public void setNivelActual(Nivel nivel) {
+		this.nivelActual = nivel;
+	}
+
 	public boolean nivelCompleto() {
 		return this.nivelActual.nivelCompleto();
 	}
 
+	public List<Nivel> getNiveles() {
+		return this.niveles;
+	}
+
+	public void incrementarNivelActual() {
+		Nivel sigNivel = null;
+		for (Iterator<Nivel> it = this.niveles.iterator(); (it.hasNext() && sigNivel == null);) {
+			Nivel n = it.next();
+			if (n.getNumero() == this.nivelActual.getNumero() + 1) {
+				sigNivel = n;
+			}
+		}
+		if (sigNivel != null) {
+			this.nivelActual = sigNivel;
+		}
+	}
 }
