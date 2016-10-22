@@ -16,7 +16,7 @@ public class Ranking {
 		List<ItemRanking> result = new ArrayList<ItemRanking>();
 		for (Iterator<ItemRanking> it = items.iterator(); it.hasNext();) {
 			ItemRanking ir = it.next();
-			if (ir.getJuego().equals(juegoId)) {
+			if (ir.getJuego().getNombre().equals(juegoId)) {
 				result.add(ir);
 			}
 		}

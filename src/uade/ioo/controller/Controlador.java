@@ -157,4 +157,39 @@ public class Controlador {
 		this.juegoActual.incrementarNivelActual();
 		this.ranking.actualizarRankingJuego(this.usuarioActual, this.juegoActual);
 	}
+
+	/**
+	 * 
+	 * @return una lista ordenada por juego y nivel desc
+	 */
+	public List<ItemRanking> getRankingPorJuego() {
+		List<ItemRanking> result = new ArrayList<ItemRanking>();
+		for (Iterator<Juego> it = this.juegos.iterator(); it.hasNext();) {
+			// Busco el listado de itemRankings de cada juego y ordeno la lista.
+			// Luego los agrego al result.
+			Juego juego = it.next();
+			List<ItemRanking> aux = this.ranking.obtenerRankingPorJuego(juego.getNombre());
+			sortNivelDesc(aux);
+			result.addAll(aux);
+		}
+
+		return result;
+	}
+
+	// metodo burbujeo
+	private void sortNivelDesc(List<ItemRanking> list) {
+		boolean terminar = false;
+		while (!terminar) {
+			terminar = true;
+			for (int i = 0; i < list.size() - 1; i++) {
+				ItemRanking ir = list.get(i);
+				ItemRanking aux = list.get(i + 1);
+				if (ir.getNivel().getNumero() < aux.getNivel().getNumero()) {
+					terminar = false;
+					list.set(i + 1, ir);
+					list.set(i, aux);
+				}
+			}
+		}
+	}
 }

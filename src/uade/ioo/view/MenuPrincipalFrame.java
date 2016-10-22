@@ -27,12 +27,18 @@ public class MenuPrincipalFrame extends BaseViewFrame {
 			juegoButton.addActionListener(new GameSelectActionListener(this));
 			add(juegoButton);
 		}
-		
-		JButton modificarUsuarioButton = new JButton();
-		modificarUsuarioButton.setText("Preferencias");
-		modificarUsuarioButton.setBounds(20, 450, 130, 20);
-		modificarUsuarioButton.addActionListener(new PreferenciasActionListener());
-		add(modificarUsuarioButton);
+
+		JButton preferenciasButton = new JButton();
+		preferenciasButton.setText("Preferencias");
+		preferenciasButton.setBounds(20, 450, 130, 20);
+		preferenciasButton.addActionListener(new PreferenciasActionListener());
+		add(preferenciasButton);
+
+		JButton rankingButton = new JButton();
+		rankingButton.setText("Ranking");
+		rankingButton.setBounds(160, 450, 130, 20);
+		rankingButton.addActionListener(new RankingActionListener());
+		add(rankingButton);
 
 		JButton salirButton = new JButton();
 		salirButton.setText("Salir");
@@ -75,19 +81,31 @@ public class MenuPrincipalFrame extends BaseViewFrame {
 			salir();
 		}
 	}
-	
-	public class PreferenciasActionListener implements ActionListener {
 
+	public class PreferenciasActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			showPreferencias();
 		}
 
-		
 	}
+
+	public class RankingActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			showRanking();
+		}
+	}
+
 	private void showPreferencias() {
 		PreferenciasFrame prefs = new PreferenciasFrame(controller);
 		this.setVisible(false);
 		prefs.setVisible(true);
+	}
+
+	private void showRanking() {
+		RankingFrame ranking = new RankingFrame(controller);
+		this.setVisible(false);
+		ranking.setVisible(true);
 	}
 }
