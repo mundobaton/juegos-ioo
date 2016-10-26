@@ -45,10 +45,6 @@ public abstract class Juego {
 		return nivelActual;
 	}
 
-	public void setNivelActual(Nivel nivel) {
-		this.nivelActual = nivel;
-	}
-
 	public boolean nivelCompleto() {
 		return this.nivelActual.nivelCompleto();
 	}

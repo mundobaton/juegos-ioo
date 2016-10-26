@@ -84,7 +84,8 @@ public class Controlador {
 
 	public void crearUsuario(String userId, String nombre, String apellido) throws ValidationException {
 		if (!usuarioValido(userId)) {
-			this.usuarios.add(new Usuario(userId, nombre, apellido));
+			Usuario u = new Usuario(userId, nombre, apellido);
+			this.usuarios.add(u);
 		} else {
 			throw new ValidationException("El usuario ya existe!");
 		}
